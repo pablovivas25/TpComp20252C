@@ -20,7 +20,7 @@ Repositorio para trabajos de la material Lenguajes y Compiladores en UNLaM
 | Nombre | DNI |
 | ------ | --- |
 
-| Vivas, Pablo | - |
+| Vivas, Pablo | |
 
 ## Docentes
 

@@ -90,10 +90,12 @@ MAXTEXTSIZE equ 50
 	@usr_f                             	DD  ?
 	@usr_h                             	DD  ?
 	@usr_j                             	DD  ?
+	@usr_l                             	DD  ?
 	@usr_numeroEntero                  	DD  ?
 	@usr_p1                            	DB	MAXTEXTSIZE dup (?),'$'
 	@usr_p2                            	DB	MAXTEXTSIZE dup (?),'$'
 	@usr_p3                            	DB	MAXTEXTSIZE dup (?),'$'
+	@usr_q                             	DD  ?
 	@usr_r                             	DD  ?
 	@usr_s                             	DD  ?
 	@usr_variable1                     	DD  ?
@@ -455,6 +457,10 @@ NCALC_212_END:
 	DisplayFloat _ncalc_res_212, 2
 	newLine 1
 	FLD DWORD PTR _ncalc_res_212
+	FLD _float_p_3_8
+	FSTP @usr_l
+	FLD _int_p_2
+	FSTP @usr_q
 ; --- CALCULO AREA TRIANGULO 1 Y 2 ---
 ; --- CALCULO AREA TRIANGULO 1 ---
 	FLD _int_p_12

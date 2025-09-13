@@ -474,8 +474,10 @@ asignacion:
             exit(1);
         }                
                 
+       // insertar_en_polaca($3);
         insertar_en_polaca($1);
         insertar_en_polaca("=:");
+        updateValueInTS(&listaTS,$1,$3);
         printf("ID = factor es ASIGNACION\n");
         free($3);
     };
@@ -508,145 +510,6 @@ asignacion_operacion_aritmetica:
         free($3);
     };
 
-/*
-punto:
-    CTE_INTEGER COMA CTE_INTEGER
-    {
-        insertar_en_polaca($1);
-        insertar_en_polaca($3);
-        insertNumber(&listaTS, $1);
-        insertNumber(&listaTS, $3);
-         contTotalArgsTRIANGLE += 2;
-       
-    }
-    | CTE_INTEGER COMA ID
-    {
-        const char* tipoY = getTipoDatoVariable(&listaTS, $3);
-        if (!tipoY) {
-            printf("ERROR: Variable '%s' no fue declarada\n", $3);
-            exit(1);
-        }
-        insertar_en_polaca($1);
-        insertar_en_polaca($3);
-        insertNumber(&listaTS, $1);
-         contTotalArgsTRIANGLE += 2;
-
-
-    }
-    | CTE_FLOAT COMA CTE_FLOAT 
-    {
-         insertar_en_polaca($1);
-        insertar_en_polaca($3);
-        insertNumber(&listaTS, $1);
-        insertNumber(&listaTS, $3);
-         contTotalArgsTRIANGLE += 2;
- 
-
-
-    }
-    | CTE_FLOAT COMA ID
-    {
-        const char* tipoY = getTipoDatoVariable(&listaTS, $3);
-        if (!tipoY) {
-            printf("ERROR: Variable '%s' no fue declarada\n", $3);
-            exit(1);
-        }
-        insertar_en_polaca($1);
-        insertar_en_polaca($3);
-        insertNumber(&listaTS, $1);
-         contTotalArgsTRIANGLE += 2;
-     
-
-    }
-    | CTE_FLOAT COMA CTE_INTEGER
-    {
-        insertar_en_polaca($1);
-        insertar_en_polaca($3);
-        insertNumber(&listaTS, $1);
-        insertNumber(&listaTS, $3);
-         contTotalArgsTRIANGLE += 2;
-       
-
-    }
-    | ID COMA ID
-    {
-        const char* tipoX = getTipoDatoVariable(&listaTS, $1);
-        const char* tipoY = getTipoDatoVariable(&listaTS, $3);
-        if (!tipoX || !tipoY) {
-            printf("ERROR: Variables '%s' o '%s' no fueron declaradas\n", $1, $3);
-            exit(1);
-        }
-        insertar_en_polaca($1);
-        insertar_en_polaca($3);
-         contTotalArgsTRIANGLE += 2;
-     
-
-    }
-    | ID COMA CTE_INTEGER
-    {
-        const char* tipoX = getTipoDatoVariable(&listaTS, $1);
-        if (!tipoX) {
-            printf("ERROR: Variable '%s' no fue declarada\n", $1);
-            exit(1);
-        }
-        insertar_en_polaca($1);
-        insertar_en_polaca($3);
-        insertNumber(&listaTS, $3);
-         contTotalArgsTRIANGLE += 2;
- 
-
-    }
-    | ID COMA CTE_FLOAT
-    {
-         const char* tipoX = getTipoDatoVariable(&listaTS, $1);
-        if (!tipoX) {
-            printf("ERROR: Variable '%s' no fue declarada\n", $1);
-            exit(1);
-        }
-        insertar_en_polaca($1);
-        insertar_en_polaca($3);
-        insertNumber(&listaTS, $3);
-         contTotalArgsTRIANGLE += 2;
-    
-
-    };
-
-lista_vertice:
-    CA punto PYC punto PYC punto CC 
-    {
-        if(primero=0)
-            
-    }
-lista_params_triangle:
-    lista_vertice PYC lista_vertice
-   
-    
-asignacion_triangle_area_maximum:
-    ID OP_AS_NEG_CALC TRIANGLEAREAMAXIMUM PA lista_params_triangle PC
-    {
-        printf("Sintactico --> inicio funcion triangleAreaMaximum\n");
-        // Validación de tipo: triangleAreaMaximum devuelve FLOAT
-      
-        // Insertar marcador de función con cantidad de argumentos
-        char buf[32];
-        snprintf(buf, sizeof(buf), "TRIANGLEMAX_%d", contTotalArgsTRIANGLE);
-        insertar_en_polaca(buf);
-
-        // Insertar variable destino y operador de asignación
-        insertar_en_polaca($1);
-        insertar_en_polaca("=");
-
-        printf("Sintactico --> funcion triangleAreaMaximum\n");
-
-
-
-    };
-
-*/
-/* triangleAreaMaximum:
-   Sintaxis esperada: TRIANGLEAREAMAXIMUM '(' '[' punto ';' punto ';' punto ']' ',' '[' punto ';' punto ';' punto ']' ')'
-   Usamos PYC como ';' dentro de los corchetes. Ajustá si tu lexer usa otro token.
-*/
 funcion_triangleAreaMaximum:
     ID OP_AS_NEG_CALC TRIANGLEAREAMAXIMUM PA 
     {
@@ -711,51 +574,54 @@ punto:
       }
     | ID COMA ID
       {
-          insertar_en_polaca($1);
-            insertNumber(&listaTS,$1);
-          insertar_en_polaca($3);
-            insertNumber(&listaTS,$3);
-          insertar_en_polaca("PUNTO");
+       
+       char *valorX = getValueFromTS(&listaTS, $1);
+     char *valorY = getValueFromTS(&listaTS, $3);
+       
+
+        insertar_en_polaca(valorX);
+        insertar_en_polaca(valorY);
+
+        insertar_en_polaca("PUNTO");
       }
     | ID COMA CTE_INTEGER
       {
-          insertar_en_polaca($1);
-            insertNumber(&listaTS,$1);
-          insertar_en_polaca($3);
-            insertNumber(&listaTS,$3);
-          insertar_en_polaca("PUNTO");
+             char *valorY = getValueFromTS(&listaTS, $1);
+              insertar_en_polaca(valorY);
+        insertar_en_polaca($3);
+        insertNumber(&listaTS,$3);
+        insertar_en_polaca("PUNTO");
       }
     | ID COMA CTE_FLOAT
       {
-          insertar_en_polaca($1);
-          insertar_en_polaca($3);
-            insertNumber(&listaTS,$1);
-              insertNumber(&listaTS,$3);
-          insertar_en_polaca("PUNTO");
+        char *valorY = getValueFromTS(&listaTS, $1);
+        insertar_en_polaca(valorY);
+        insertar_en_polaca($3);
+        insertar_en_polaca("PUNTO");
       }
     | CTE_INTEGER COMA ID
       {
-          insertar_en_polaca($1);
-          insertar_en_polaca($3);
-            insertNumber(&listaTS,$1);
-              insertNumber(&listaTS,$3);
-          insertar_en_polaca("PUNTO");
+        char *valorY = getValueFromTS(&listaTS, $3);
+        insertar_en_polaca($1);
+        insertar_en_polaca(valorY);
+        insertNumber(&listaTS,$1);
+        insertar_en_polaca("PUNTO");
       }
     | CTE_FLOAT COMA ID
       {
+         char *valorY = getValueFromTS(&listaTS, $3);
           insertar_en_polaca($1);
-          insertar_en_polaca($3);
-            insertNumber(&listaTS,$1);
-              insertNumber(&listaTS,$3);
+          insertar_en_polaca(valorY);
+          insertNumber(&listaTS,$1);
           insertar_en_polaca("PUNTO");
       }
     | CTE_FLOAT COMA CTE_INTEGER
       {
          insertar_en_polaca($1);
-          insertar_en_polaca($3);
-            insertNumber(&listaTS,$1);
-              insertNumber(&listaTS,$3);
-          insertar_en_polaca("PUNTO");
+         insertar_en_polaca($3);
+         insertNumber(&listaTS,$1);
+         insertNumber(&listaTS,$3);
+        insertar_en_polaca("PUNTO");
       }
 
       | CTE_INTEGER COMA CTE_FLOAT  

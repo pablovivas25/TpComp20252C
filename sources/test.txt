@@ -1,8 +1,8 @@
 #+ Declaracion +#
 
 init {
-    a, a1, b1, x1, z, f: Float
-    variable1, d, c, x, r, j, numeroEntero, s,h,contador: Int
+    a, a1, b1, x1, z, f , l: Float
+    variable1, d, c, x, r, j, numeroEntero, s,h,contador, q: Int
     b, p1, p2, p3 : String
 }
 
@@ -107,5 +107,6 @@ f = negativeCalculation(-4.0, 2.3, b1, 5.6)
 #+ Cantidad de negativos: 2 (par)  +# 
 #+ f := (-4.0) + (-1.7) = -5.7 +#
 
-
-areaMax=triangleAreaMaximum([0,3.8;4.0,12;2.5,3];[3.8,0; 6,0; 2,2])
+l := 3.8
+q := 2
+areaMax=triangleAreaMaximum([0,l;4.0,12;2.5,3];[l,0; 6,0; q,2])

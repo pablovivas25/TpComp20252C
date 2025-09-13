@@ -399,6 +399,17 @@ char** obtener_reorder_list(char** polaca, int size, PilaEstatica* pilaASM) {
 // Esta es una nueva función auxiliar que necesitarías crear.
 // Suponemos que tu estructura de lista tiene un campo 'value'
 // para almacenar el valor de la variable.
+
+// Añade esta función a tu archivo de funciones.
+void updateValueInTS(tList *p, const char* name, const char* newValue) {
+    while (*p) {
+        if (strcmp((*p)->name, name) == 0) {
+            strcpy((*p)->value, newValue);
+            return;
+        }
+        p = &(*p)->next;
+    }
+}
 char* getValueFromTS(tList *p, const char* name) {
     while (*p) {
         if (strcmp((*p)->name, name) == 0) {

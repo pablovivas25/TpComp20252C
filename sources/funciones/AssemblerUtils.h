@@ -17,5 +17,5 @@ typedef enum {
 int generar_assembler(tList *ptrTS, char **polaca, int rpn_size);
 VariableType getVariableType(const char* dataType);
 char* getTypeFromTS(tList ts, const char* name);
-
+void updateValueInTS(tList *p, const char* name, const char* newValue);
 #endif // ASSEMBLERUTILS_H_INCLUDED

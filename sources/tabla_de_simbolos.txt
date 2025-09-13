@@ -38,23 +38,25 @@ _______________________________________________________________________________
 |_muestro hasta que c sea mayor que d|CTE_STRING    |muestro hasta que c sea mayor que d|35        |
 |_variable1 > d o c > d   |CTE_STRING    |variable1 > d o c > d    |21        |
 |_variable1 > d y c > d   |CTE_STRING    |variable1 > d y c > d    |21        |
-|a                        |FLOAT         |                         |0         |
-|a1                       |FLOAT         |                         |0         |
-|b                        |STRING        |                         |0         |
-|b1                       |FLOAT         |                         |0         |
-|c                        |INTEGER       |                         |0         |
+|a                        |FLOAT         |4.1                      |0         |
+|a1                       |FLOAT         |.9999                    |0         |
+|b                        |STRING        |@sdADaSjfla%dfg          |0         |
+|b1                       |FLOAT         |-1.7                     |0         |
+|c                        |INTEGER       |1                        |0         |
 |contador                 |INTEGER       |                         |0         |
-|d                        |INTEGER       |                         |0         |
-|f                        |FLOAT         |                         |0         |
+|d                        |INTEGER       |3                        |0         |
+|f                        |FLOAT         |-1.7                     |0         |
 |h                        |INTEGER       |                         |0         |
 |j                        |INTEGER       |                         |0         |
+|l                        |FLOAT         |3.8                      |0         |
 |numeroEntero             |INTEGER       |                         |0         |
-|p1                       |STRING        |                         |0         |
+|p1                       |STRING        |asldk  fh sjf            |0         |
 |p2                       |STRING        |                         |0         |
 |p3                       |STRING        |                         |0         |
+|q                        |INTEGER       |2                        |0         |
 |r                        |INTEGER       |                         |0         |
 |s                        |INTEGER       |                         |0         |
-|variable1                |INTEGER       |                         |0         |
+|variable1                |INTEGER       |3                        |0         |
 |x                        |INTEGER       |                         |0         |
 |x1                       |FLOAT         |                         |0         |
 |z                        |FLOAT         |                         |0         |
