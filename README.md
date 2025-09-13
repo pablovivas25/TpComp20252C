@@ -1,4 +1,4 @@
-# Repo - tpCompilador_1C_2025
+# Repo - tpCompilador_2C_2025
 
 Repositorio para trabajos de la material Lenguajes y Compiladores en UNLaM
 
