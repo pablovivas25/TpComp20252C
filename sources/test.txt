@@ -1,0 +1,111 @@
+#+ Declaracion +#
+
+init {
+    a, a1, b1, x1, z, f: Float
+    variable1, d, c, x, r, j, numeroEntero, s,h,contador: Int
+    b, p1, p2, p3 : String
+}
+
+#+ asginaciones +#
+a := 99999.99
+a := 2.
+a1 := .9999
+
+b1 := 6.0
+x1 =: 1 * b1 + a
+write(x1)
+b1 := 2.5
+x1 =: 10 / b1 + a
+write(x1)
+
+b := "@sdADaSjfla%dfg"
+p1 := "asldk  fh sjf"
+
+#+ condiciones +#
+if (a > a1)
+{
+    write("a es mas grande que a1")
+}
+else
+{
+    write("a es mas chico o igual a a1")
+}
+
+#+ Ejemplo AND +#
+variable1 := 5
+d := 1
+c := 2
+
+if (variable1 > d AND c > d)
+{
+    write("variable1 > d y c > d")
+}
+
+#+ Ejemplo OR +#
+variable1 := 3
+d := 1
+c := 2
+
+if (variable1 > d OR c > d)
+{
+    write("variable1 > d o c > d")
+}
+
+#+ Ejemplo NOT +#
+d := 1
+c := 2
+
+if (NOT d > c)
+{
+    write("d no es mas grande que c. check NOT")
+}
+
+#+ ciclo +#
+c := 1
+d := 3
+
+while (c < d)
+{
+    write("muestro hasta que c sea mayor que d")
+    c =: c + 1
+}
+
+#+ Entrada y salida +#
+
+write("Numero ingresado:")  #+ "texto" es una cte string +#
+write(numeroEntero)  #+ a es una variable definida previamente +#
+write("-------------")  #+ "texto" es una cte string +#
+
+
+#+ Operaciones aritmeticas +#
+x =: 27 - c
+x =: r + 500
+x =: 34 * 3
+x1 =: z / f
+x =: r * j - 2
+
+
+#+ TEMA ESPECIAL REORDER 1ER CUATRI 2025 +#
+
+reorder([x + 3, 1 + 1, 9 - x],true,2)  #+ la primer posicion es cero +#
+#+ [9-x, 1+1, x+3]  luego de reordenar +#
+
+reorder([r * j - 2, x + 3, 1 + 1, 9 - x], false,2)  #+ la primer posicion es cero +#
+#+ [r*j-2, x+3, 9-x, 1+1]  luego de reordenar +#
+
+#+ TEMA ESPECIAL NEGATIVECALCULATION 1ER CUATRI 2025 +#
+a := 4.1
+f := -1.7
+
+x1 = negativeCalculation(3.5, -2.0, a, f, -3.0)
+#+ Cantidad de negativos: 3 (impar) +#
+#+ x := (-2.0) * (-1.7) * (-3.0) = -10.2 +#
+
+b1 := -1.7
+
+f = negativeCalculation(-4.0, 2.3, b1, 5.6)  
+#+ Cantidad de negativos: 2 (par)  +# 
+#+ f := (-4.0) + (-1.7) = -5.7 +#
+
+
+areaMax=triangleAreaMaximum([0,3.8;4.0,12;2.5,3];[3.8,0; 6,0; 2,2])

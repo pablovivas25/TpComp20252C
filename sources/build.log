@@ -1,0 +1,799 @@
+
+C:\git-repo\compiladores\tpCompilador_1C_2025\sources>set TEST_FILE= 
+
+C:\git-repo\compiladores\tpCompilador_1C_2025\sources>echo "el archivo encontrado es " 
+"el archivo encontrado es "
+
+C:\git-repo\compiladores\tpCompilador_1C_2025\sources>if not "" == "" (echo "corriendo test con " )  else (set TEST_FILE=test.txt ) 
+
+C:\git-repo\compiladores\tpCompilador_1C_2025\sources>flex Lexico.l 
+
+C:\git-repo\compiladores\tpCompilador_1C_2025\sources>bison -dyv Sintactico.y 
+
+C:\git-repo\compiladores\tpCompilador_1C_2025\sources>gcc.exe ./funciones/lista.c ./funciones/funciones.c ./funciones/PilaEstaticaASM.c ./funciones/AssemblerUtils.c lex.yy.c y.tab.c -o compilador.exe 
+
+C:\git-repo\compiladores\tpCompilador_1C_2025\sources>compilador.exe "test.txt" 
+
+INICIO DE COMPILACION
+Starting Reverse Polish Notation...
+
+Lexico --> Init: init
+
+Lexico --> Llave apertura: {
+
+Lexico --> Identificador: a
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: a1
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: b1
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: x1
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: z
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: f
+
+Lexico --> Dos Puntos: :
+
+Lexico --> Float: Float
+
+Lexico --> Identificador: variable1
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: d
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: c
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: x
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: r
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: j
+
+Lexico --> Dos Puntos: :
+
+Lexico --> Int: Int
+
+Lexico --> Identificador: b
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: p1
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: p2
+
+Lexico --> Coma: ,
+
+Lexico --> Identificador: p3
+
+Lexico --> Dos Puntos: :
+
+Lexico --> String: String
+
+Lexico --> Llave cierre: }
+Bloque declaracion INIT
+
+Lexico --> Identificador: a
+
+Lexico --> Asignacion: :=
+
+Lexico --> Constante flotante: 99999.99
+CTE_FLOAT es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: a
+
+Lexico --> Asignacion: :=
+
+Lexico --> Constante flotante: 2.
+CTE_FLOAT es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: a1
+
+Lexico --> Asignacion: :=
+
+Lexico --> Constante flotante: .9999
+CTE_FLOAT es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: b1
+
+Lexico --> Asignacion: :=
+
+Lexico --> Constante flotante: 6.0
+CTE_FLOAT es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: x1
+
+Lexico --> Asignacion operacion: =:
+CTE_INTEGER es Factor
+Factor es Termino
+
+Lexico --> Multiplicacion: *
+
+Lexico --> Identificador: b1
+ID es Factor 
+Termino * Factor es Termino
+
+Lexico --> Suma: +
+Termino es Expresion
+
+Lexico --> Identificador: a
+ID es Factor 
+Factor es Termino
+
+Lexico --> Write: write
+Expresion + Termino es Expresion
+ID =: expresion es ASIGNACION
+
+Lexico --> ParAbre: (
+
+Lexico --> Identificador: x1
+
+Lexico --> ParCierra: )
+
+Lexico --> Identificador: b1
+
+Lexico --> Asignacion: :=
+
+Lexico --> Constante flotante: 2.5
+CTE_FLOAT es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: x1
+
+Lexico --> Asignacion operacion: =:
+CTE_INTEGER es Factor
+Factor es Termino
+
+Lexico --> Division: /
+
+Lexico --> Identificador: b1
+ID es Factor 
+Termino / Factor es Termino
+
+Lexico --> Suma: +
+Termino es Expresion
+
+Lexico --> Identificador: a
+ID es Factor 
+Factor es Termino
+
+Lexico --> Write: write
+Expresion + Termino es Expresion
+ID =: expresion es ASIGNACION
+
+Lexico --> ParAbre: (
+
+Lexico --> Identificador: x1
+
+Lexico --> ParCierra: )
+
+Lexico --> Identificador: b
+
+Lexico --> Asignacion: :=
+
+Lexico --> Constante string: "@sdADaSjfla%dfg"
+CTE_STRING es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: p1
+
+Lexico --> Asignacion: :=
+
+Lexico --> Constante string: "asldk  fh sjf"
+CTE_STRING es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Write: write
+
+Lexico --> ParAbre: (
+
+Lexico --> Constante string: "HOLA MUNDO!"
+
+Lexico --> ParCierra: )
+
+Lexico --> Write: write
+
+Lexico --> ParAbre: (
+
+Lexico --> Constante string: "a es mas chico o igual a a1"
+
+Lexico --> ParCierra: )
+
+Lexico --> IF: if
+
+Lexico --> ParAbre: (
+
+Lexico --> Identificador: a
+ID es Factor 
+Factor es Termino
+
+Lexico --> Operador Mayor: >
+Termino es Expresion
+
+Lexico --> Identificador: a1
+ID es Factor 
+Factor es Termino
+
+Lexico --> ParCierra: )
+Termino es Expresion
+
+Lexico --> Llave apertura: {
+
+Lexico --> Write: write
+
+Lexico --> ParAbre: (
+
+Lexico --> Constante string: "a es mas grande que a1"
+
+Lexico --> ParCierra: )
+
+Lexico --> Llave cierre: }
+ ---- entrando: 1
+
+Lexico --> Else: else
+
+Lexico --> Llave apertura: {
+
+Lexico --> Write: write
+
+Lexico --> ParAbre: (
+
+Lexico --> Constante string: "a es mas chico o igual a a1"
+
+Lexico --> ParCierra: )
+
+Lexico --> Llave cierre: }
+ ---- entrando: 2
+Sintactico --> IF-ELSE
+
+Lexico --> Identificador: variable1
+
+Lexico --> Asignacion: :=
+CTE_INTEGER es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: d
+
+Lexico --> Asignacion: :=
+CTE_INTEGER es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: c
+
+Lexico --> Asignacion: :=
+CTE_INTEGER es Factor
+ID = factor es ASIGNACION
+
+Lexico --> IF: if
+
+Lexico --> ParAbre: (
+
+Lexico --> Identificador: variable1
+ID es Factor 
+Factor es Termino
+
+Lexico --> Operador Mayor: >
+Termino es Expresion
+
+Lexico --> Identificador: d
+ID es Factor 
+Factor es Termino
+
+Lexico --> And: AND
+Termino es Expresion
+
+Lexico --> Identificador: c
+ID es Factor 
+Factor es Termino
+
+Lexico --> Operador Mayor: >
+Termino es Expresion
+
+Lexico --> Identificador: d
+ID es Factor 
+Factor es Termino
+
+Lexico --> ParCierra: )
+Termino es Expresion
+
+Lexico --> Llave apertura: {
+
+Lexico --> Write: write
+
+Lexico --> ParAbre: (
+
+Lexico --> Constante string: "variable1 y c son mas grandes que d"
+
+Lexico --> ParCierra: )
+
+Lexico --> Llave cierre: }
+ ---- entrando: 3
+
+Lexico --> Identificador: variable1
+Sintactico --> IF
+
+Lexico --> Asignacion: :=
+CTE_INTEGER es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: d
+
+Lexico --> Asignacion: :=
+CTE_INTEGER es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: c
+
+Lexico --> Asignacion: :=
+CTE_INTEGER es Factor
+ID = factor es ASIGNACION
+
+Lexico --> IF: if
+
+Lexico --> ParAbre: (
+
+Lexico --> Identificador: variable1
+ID es Factor 
+Factor es Termino
+
+Lexico --> Operador Mayor: >
+Termino es Expresion
+
+Lexico --> Identificador: d
+ID es Factor 
+Factor es Termino
+
+Lexico --> Or: OR
+Termino es Expresion
+
+Lexico --> Identificador: c
+ID es Factor 
+Factor es Termino
+
+Lexico --> Operador Mayor: >
+Termino es Expresion
+
+Lexico --> Identificador: d
+ID es Factor 
+Factor es Termino
+
+Lexico --> ParCierra: )
+Termino es Expresion
+
+Lexico --> Llave apertura: {
+
+Lexico --> Write: write
+
+Lexico --> ParAbre: (
+
+Lexico --> Constante string: "var1 grande que d o c mas grande d"
+
+Lexico --> ParCierra: )
+
+Lexico --> Llave cierre: }
+ ---- entrando: 4
+
+Lexico --> Identificador: d
+Sintactico --> IF
+
+Lexico --> Asignacion: :=
+CTE_INTEGER es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: c
+
+Lexico --> Asignacion: :=
+CTE_INTEGER es Factor
+ID = factor es ASIGNACION
+
+Lexico --> IF: if
+
+Lexico --> ParAbre: (
+
+Lexico --> Not: NOT
+
+Lexico --> Identificador: d
+ID es Factor 
+Factor es Termino
+
+Lexico --> Operador Mayor: >
+Termino es Expresion
+
+Lexico --> Identificador: c
+ID es Factor 
+Factor es Termino
+
+Lexico --> ParCierra: )
+Termino es Expresion
+
+Lexico --> Llave apertura: {
+
+Lexico --> Write: write
+
+Lexico --> ParAbre: (
+
+Lexico --> Constante string: "d no es mas grande que c. check NOT"
+
+Lexico --> ParCierra: )
+
+Lexico --> Llave cierre: }
+ ---- entrando: 5
+
+Lexico --> Identificador: c
+Sintactico --> IF
+
+Lexico --> Asignacion: :=
+CTE_INTEGER es Factor
+ID = factor es ASIGNACION
+
+Lexico --> Identificador: d
+
+Lexico --> Asignacion: :=
+CTE_INTEGER es Factor
+ID = factor es ASIGNACION
+
+Lexico --> While: while
+
+Lexico --> ParAbre: (
+
+Lexico --> Identificador: c
+ID es Factor 
+Factor es Termino
+
+Lexico --> Operador Menor: <
+Termino es Expresion
+
+Lexico --> Identificador: d
+ID es Factor 
+Factor es Termino
+
+Lexico --> ParCierra: )
+Termino es Expresion
+
+Lexico --> Llave apertura: {
+
+Lexico --> Write: write
+
+Lexico --> ParAbre: (
+
+Lexico --> Constante string: "muestro hasta que c sea mayor que d"
+
+Lexico --> ParCierra: )
+
+Lexico --> Identificador: c
+
+Lexico --> Asignacion operacion: =:
+
+Lexico --> Identificador: c
+ID es Factor 
+Factor es Termino
+
+Lexico --> Suma: +
+Termino es Expresion
+CTE_INTEGER es Factor
+Factor es Termino
+
+Lexico --> Llave cierre: }
+Expresion + Termino es Expresion
+ID =: expresion es ASIGNACION
+ ---- entrando: 6
+Sintactico --> WHILE
+
+Lexico --> Identificador: x
+
+Lexico --> Asignacion operacion: =:
+CTE_INTEGER es Factor
+Factor es Termino
+
+Lexico --> Resta: -
+Termino es Expresion
+
+Lexico --> Identificador: c
+ID es Factor 
+Factor es Termino
+
+Lexico --> Identificador: x
+Expresion - Termino es Expresion
+ID =: expresion es ASIGNACION
+
+Lexico --> Asignacion operacion: =:
+
+Lexico --> Identificador: r
+ID es Factor 
+Factor es Termino
+
+Lexico --> Suma: +
+Termino es Expresion
+CTE_INTEGER es Factor
+Factor es Termino
+
+Lexico --> Identificador: x
+Expresion + Termino es Expresion
+ID =: expresion es ASIGNACION
+
+Lexico --> Asignacion operacion: =:
+CTE_INTEGER es Factor
+Factor es Termino
+
+Lexico --> Multiplicacion: *
+CTE_INTEGER es Factor
+Termino * Factor es Termino
+
+Lexico --> Identificador: x1
+Termino es Expresion
+ID =: expresion es ASIGNACION
+
+Lexico --> Asignacion operacion: =:
+
+Lexico --> Identificador: z
+ID es Factor 
+Factor es Termino
+
+Lexico --> Division: /
+
+Lexico --> Identificador: f
+ID es Factor 
+Termino / Factor es Termino
+
+Lexico --> Identificador: x
+Termino es Expresion
+ID =: expresion es ASIGNACION
+
+Lexico --> Asignacion operacion: =:
+
+Lexico --> Identificador: r
+ID es Factor 
+Factor es Termino
+
+Lexico --> Multiplicacion: *
+
+Lexico --> Identificador: j
+ID es Factor 
+Termino * Factor es Termino
+
+Lexico --> Resta: -
+Termino es Expresion
+CTE_INTEGER es Factor
+Factor es Termino
+Expresion - Termino es Expresion
+ID =: expresion es ASIGNACION
+ ---- entrando: 7
+_______________________________________________________________________________
+|NOMBRE                   |TIPODATO      |VALOR                    |LONGITUD  |
+_______________________________________________________________________________
+|_.9999                   |CTE_FLOAT     |.9999                    |0         |
+|_1                       |CTE_INTEGER   |1                        |0         |
+|_10                      |CTE_INTEGER   |10                       |0         |
+|_2                       |CTE_INTEGER   |2                        |0         |
+|_2.                      |CTE_FLOAT     |2.                       |0         |
+|_2.5                     |CTE_FLOAT     |2.5                      |0         |
+|_27                      |CTE_INTEGER   |27                       |0         |
+|_3                       |CTE_INTEGER   |3                        |0         |
+|_34                      |CTE_INTEGER   |34                       |0         |
+|_5                       |CTE_INTEGER   |5                        |0         |
+|_500                     |CTE_INTEGER   |500                      |0         |
+|_6.0                     |CTE_FLOAT     |6.0                      |0         |
+|_99999.99                |CTE_FLOAT     |99999.99                 |0         |
+|_@sdADaSjfla%dfg         |CTE_STRING    |@sdADaSjfla%dfg          |15        |
+|_HOLA MUNDO!             |CTE_STRING    |HOLA MUNDO!              |11        |
+|_a es mas chico o igual a a1|CTE_STRING    |a es mas chico o igual a a1|27        |
+|_a es mas grande que a1  |CTE_STRING    |a es mas grande que a1   |22        |
+|_asldk  fh sjf           |CTE_STRING    |asldk  fh sjf            |13        |
+|_d no es mas grande que c. check NOT|CTE_STRING    |d no es mas grande que c. check NOT|35        |
+|_muestro hasta que c sea mayor que d|CTE_STRING    |muestro hasta que c sea mayor que d|35        |
+|_var1 grande que d o c mas grande d|CTE_STRING    |var1 grande que d o c mas grande d|34        |
+|_variable1 y c son mas grandes que d|CTE_STRING    |variable1 y c son mas grandes que d|35        |
+|a                        |FLOAT         |                         |0         |
+|a1                       |FLOAT         |                         |0         |
+|b                        |STRING        |                         |0         |
+|b1                       |FLOAT         |                         |0         |
+|c                        |INTEGER       |                         |0         |
+|d                        |INTEGER       |                         |0         |
+|f                        |FLOAT         |                         |0         |
+|j                        |INTEGER       |                         |0         |
+|p1                       |STRING        |                         |0         |
+|p2                       |STRING        |                         |0         |
+|p3                       |STRING        |                         |0         |
+|r                        |INTEGER       |                         |0         |
+|variable1                |INTEGER       |                         |0         |
+|x                        |INTEGER       |                         |0         |
+|x1                       |FLOAT         |                         |0         |
+|z                        |FLOAT         |                         |0         |
+_______________________________________________________________________________
+
+################ Reverse Polish Notation ################
+[000] -> 99999.99
+[001] -> a
+[002] -> =:
+[003] -> 2.
+[004] -> a
+[005] -> =:
+[006] -> .9999
+[007] -> a1
+[008] -> =:
+[009] -> 6.0
+[010] -> b1
+[011] -> =:
+[012] -> 1
+[013] -> b1
+[014] -> *
+[015] -> a
+[016] -> +
+[017] -> x1
+[018] -> =:
+[019] -> x1
+[020] -> write
+[021] -> 2.5
+[022] -> b1
+[023] -> =:
+[024] -> 10
+[025] -> b1
+[026] -> /
+[027] -> a
+[028] -> +
+[029] -> x1
+[030] -> =:
+[031] -> x1
+[032] -> write
+[033] -> "@sdADaSjfla%dfg"
+[034] -> b
+[035] -> =:
+[036] -> "asldk  fh sjf"
+[037] -> p1
+[038] -> =:
+[039] -> "HOLA MUNDO!"
+[040] -> write
+[041] -> "a es mas chico o igual a a1"
+[042] -> write
+[043] -> a
+[044] -> a1
+[045] -> CMP
+[046] -> BLE
+[047] -> 52
+[048] -> "a es mas grande que a1"
+[049] -> write
+[050] -> BI
+[051] -> 54
+[052] -> "a es mas chico o igual a a1"
+[053] -> write
+[054] -> 5
+[055] -> variable1
+[056] -> =:
+[057] -> 1
+[058] -> d
+[059] -> =:
+[060] -> 2
+[061] -> c
+[062] -> =:
+[063] -> variable1
+[064] -> d
+[065] -> CMP
+[066] -> BLE
+[067] -> 75
+[068] -> c
+[069] -> d
+[070] -> CMP
+[071] -> BLE
+[072] -> 75
+[073] -> "variable1 y c son mas grandes que d"
+[074] -> write
+[075] -> 3
+[076] -> variable1
+[077] -> =:
+[078] -> 1
+[079] -> d
+[080] -> =:
+[081] -> 2
+[082] -> c
+[083] -> =:
+[084] -> variable1
+[085] -> d
+[086] -> CMP
+[087] -> BGT
+[088] -> 89
+[089] -> c
+[090] -> d
+[091] -> CMP
+[092] -> BLE
+[093] -> 96
+[094] -> "var1 grande que d o c mas grande d"
+[095] -> write
+[096] -> 1
+[097] -> d
+[098] -> =:
+[099] -> 2
+[100] -> c
+[101] -> =:
+[102] -> d
+[103] -> c
+[104] -> CMP
+[105] -> BGT
+[106] -> 109
+[107] -> "d no es mas grande que c. check NOT"
+[108] -> write
+[109] -> 1
+[110] -> c
+[111] -> =:
+[112] -> 3
+[113] -> d
+[114] -> =:
+[115] -> ET
+[116] -> c
+[117] -> d
+[118] -> CMP
+[119] -> BGE
+[120] -> 130
+[121] -> "muestro hasta que c sea mayor que d"
+[122] -> write
+[123] -> c
+[124] -> 1
+[125] -> +
+[126] -> c
+[127] -> =:
+[128] -> BI
+[129] -> 115
+[130] -> 27
+[131] -> c
+[132] -> -
+[133] -> x
+[134] -> =:
+[135] -> r
+[136] -> 500
+[137] -> +
+[138] -> x
+[139] -> =:
+[140] -> 34
+[141] -> 3
+[142] -> *
+[143] -> x
+[144] -> =:
+[145] -> z
+[146] -> f
+[147] -> /
+[148] -> x1
+[149] -> =:
+[150] -> r
+[151] -> j
+[152] -> *
+[153] -> 2
+[154] -> -
+[155] -> x
+[156] -> =:
+
+#########################################################
+
+
+:: INICIANDO GENERACION CODIGO ASM ----------------------
+La polaca tiene 157 ELEMENTOS
+
+Intentando abrir/crear y limpiar el archivo 'asm/Final.asm'...
+Ensamble Completo generado exitosamente en 'asm/Final.asm'.
+Archivo cerrado. Puedes verificar su contenido.
+
+COMPILACION EXITOSA
+Press any key to continue . . . 

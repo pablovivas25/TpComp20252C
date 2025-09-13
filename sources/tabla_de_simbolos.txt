@@ -1,0 +1,61 @@
+_______________________________________________________________________________
+|NOMBRE                   |TIPODATO      |VALOR                    |LONGITUD  |
+_______________________________________________________________________________
+|_-------------           |CTE_STRING    |-------------            |13        |
+|_-1.7                    |CTE_FLOAT     |-1.7                     |0         |
+|_-2.0                    |CTE_FLOAT     |-2.0                     |0         |
+|_-3.0                    |CTE_FLOAT     |-3.0                     |0         |
+|_-4.0                    |CTE_FLOAT     |-4.0                     |0         |
+|_.9999                   |CTE_FLOAT     |.9999                    |0         |
+|_0                       |CTE_INTEGER   |0                        |0         |
+|_1                       |CTE_INTEGER   |1                        |0         |
+|_10                      |CTE_INTEGER   |10                       |0         |
+|_12                      |CTE_INTEGER   |12                       |0         |
+|_2                       |CTE_INTEGER   |2                        |0         |
+|_2.                      |CTE_FLOAT     |2.                       |0         |
+|_2.3                     |CTE_FLOAT     |2.3                      |0         |
+|_2.5                     |CTE_FLOAT     |2.5                      |0         |
+|_27                      |CTE_INTEGER   |27                       |0         |
+|_3                       |CTE_INTEGER   |3                        |0         |
+|_3.5                     |CTE_FLOAT     |3.5                      |0         |
+|_3.8                     |CTE_FLOAT     |3.8                      |0         |
+|_34                      |CTE_INTEGER   |34                       |0         |
+|_4.0                     |CTE_FLOAT     |4.0                      |0         |
+|_4.1                     |CTE_FLOAT     |4.1                      |0         |
+|_5                       |CTE_INTEGER   |5                        |0         |
+|_5.6                     |CTE_FLOAT     |5.6                      |0         |
+|_500                     |CTE_INTEGER   |500                      |0         |
+|_6                       |CTE_INTEGER   |6                        |0         |
+|_6.0                     |CTE_FLOAT     |6.0                      |0         |
+|_9                       |CTE_INTEGER   |9                        |0         |
+|_99999.99                |CTE_FLOAT     |99999.99                 |0         |
+|_@sdADaSjfla%dfg         |CTE_STRING    |@sdADaSjfla%dfg          |15        |
+|_Numero ingresado:       |CTE_STRING    |Numero ingresado:        |17        |
+|_a es mas chico o igual a a1|CTE_STRING    |a es mas chico o igual a a1|27        |
+|_a es mas grande que a1  |CTE_STRING    |a es mas grande que a1   |22        |
+|_asldk  fh sjf           |CTE_STRING    |asldk  fh sjf            |13        |
+|_d no es mas grande que c. check NOT|CTE_STRING    |d no es mas grande que c. check NOT|35        |
+|_muestro hasta que c sea mayor que d|CTE_STRING    |muestro hasta que c sea mayor que d|35        |
+|_variable1 > d o c > d   |CTE_STRING    |variable1 > d o c > d    |21        |
+|_variable1 > d y c > d   |CTE_STRING    |variable1 > d y c > d    |21        |
+|a                        |FLOAT         |                         |0         |
+|a1                       |FLOAT         |                         |0         |
+|b                        |STRING        |                         |0         |
+|b1                       |FLOAT         |                         |0         |
+|c                        |INTEGER       |                         |0         |
+|contador                 |INTEGER       |                         |0         |
+|d                        |INTEGER       |                         |0         |
+|f                        |FLOAT         |                         |0         |
+|h                        |INTEGER       |                         |0         |
+|j                        |INTEGER       |                         |0         |
+|numeroEntero             |INTEGER       |                         |0         |
+|p1                       |STRING        |                         |0         |
+|p2                       |STRING        |                         |0         |
+|p3                       |STRING        |                         |0         |
+|r                        |INTEGER       |                         |0         |
+|s                        |INTEGER       |                         |0         |
+|variable1                |INTEGER       |                         |0         |
+|x                        |INTEGER       |                         |0         |
+|x1                       |FLOAT         |                         |0         |
+|z                        |FLOAT         |                         |0         |
+_______________________________________________________________________________
