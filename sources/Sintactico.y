@@ -29,14 +29,11 @@ int tmpIndex, tmpIndex2;
 int contAND=0, contOR=0;
 int contArgREORDER=0;
 int contTotalArgsCALNEG = 0;
+int contTotalArgsTRIANGLE = 0;
 int primerNeg=0;
 int contarIngresos=0;
 int cont_fct_reord=0;
 CLAUSE_LIST clauseType;
-int contTotalArgsTRIANGLE = 0;
-float menor_area=0;
-int primero=0;
-
 
 int yyerror();
 int yylex();    
@@ -54,7 +51,6 @@ extern int yylineno;
 %token OP_AS
 %token OP_AS_OPE_ARIT
 %token OP_AS_NEG_CALC
-%token OP_AS_TRIANGLE_AREA_MAXIMUM
 %token OP_SUM
 %token OP_MUL
 %token OP_RES
@@ -93,13 +89,11 @@ extern int yylineno;
 %token OP_MAY_IGU
 %token REORDER
 %token NEGATIVECALCULATION
-%token TRIANGLEAREAMAXIMUM 
+%token TRIANGLEAREAMAXIMUM
 %type  <strVal> factor
+%type  <strVal> factor_punto
 %type  <strVal> termino
 %type  <strVal> expresion
-%type <strVal> punto
-%type <strVal> lista_vertice
-
 %token .
 
 %start programa
@@ -126,8 +120,8 @@ sentencia:
     | asignacion
     | asignacion_operacion_aritmetica
     | asignacion_negativeCalculation
-    | funcion_reorder { cont_fct_reord++; };
     | funcion_triangleAreaMaximum
+    | funcion_reorder { cont_fct_reord++; };
 
 declaracion:
     declaracion_init { printf("Bloque declaracion INIT\n"); };
@@ -305,14 +299,14 @@ condicion:
     comparacion 
     {
         insertar_en_polaca("CMP");
-        tmpIndex=insertar_en_polaca(cmpToken);
+        tmpIndex = insertar_en_polaca(cmpToken);
         apilar_indice(tmpIndex);
         avanzar_polaca();
     }
     | condicion AND comparacion 
     {
         insertar_en_polaca("CMP");
-        tmpIndex=insertar_en_polaca(cmpToken);
+        tmpIndex = insertar_en_polaca(cmpToken);
         apilar_indice(tmpIndex);
         avanzar_polaca();
         contAND++;
@@ -336,8 +330,82 @@ condicion:
     };
 
 comparacion:
-    expresion comparador expresion
-    //| expresion comparador ISZERO;
+    expresion comparador expresion;
+
+funcion_triangleAreaMaximum:
+    ID OP_AS_NEG_CALC TRIANGLEAREAMAXIMUM PA
+    {
+       
+        const char* tipoID = getTipoDatoVariable(&listaTS, $1);
+        if (!tipoID) {
+            printf("ERROR: Variable '%s' no fue declarada.\n", $1);
+            exit(1);
+        }
+    }
+    lista_triangulo
+    PC
+    {
+        insertar_en_polaca("TRIAMAX");     // operador de función
+        insertar_en_polaca($1);            // variable destino
+        insertar_en_polaca("=:");          // operador de asignación
+        printf("Sintáctico --> funcion triangleAreaMaximum\n");
+    }
+;
+
+lista_triangulo:
+    triangulo PYC triangulo
+;
+
+triangulo:
+    CA lista_puntos CC
+    {
+        insertar_en_polaca("VERTEXLIST");  // marca fin de triángulo
+    }
+;
+
+lista_puntos:
+    punto PYC punto PYC punto
+;
+
+punto:
+    factor_punto COMA factor_punto
+    {
+        insertar_en_polaca("PUNTO");  // marca fin de punto
+    }
+;
+
+factor_punto:
+    ID
+    { 
+        insertar_en_polaca($1);
+        printf("ID es Factor Punto \n");
+        const char* tipo = getTipoDatoVariable(&listaTS, $1);
+        if (!tipo) {
+            printf("ERROR: Variable '%s' no fue declarada\n", $1);
+            exit(1);
+        }else if(strcmp(tipo, "STRING") == 0) {
+            printf("Asignacion no permitida para el tipo STRING(FACTOR_PUNTO).\n", $1);
+            exit(1);
+
+        } else {
+            $$ = strdup(tipo);
+        }
+    }
+    | CTE_INTEGER
+    {
+        insertar_en_polaca($1); 
+        insertNumber(&listaTS,$1);
+        printf("CTE_INTEGER es Factor Punto\n");
+        $$ = strdup($1);  // retorno el valor de la constante
+    }
+    | CTE_FLOAT      
+    {
+        insertar_en_polaca($1);
+        insertNumber(&listaTS,$1);
+        printf("CTE_FLOAT es Factor Punto\n");
+        $$ = strdup($1); 
+    };
+
 
 comparador:
     OP_MEN       
@@ -474,10 +542,8 @@ asignacion:
             exit(1);
         }                
                 
-       // insertar_en_polaca($3);
         insertar_en_polaca($1);
         insertar_en_polaca("=:");
-        updateValueInTS(&listaTS,$1,$3);
         printf("ID = factor es ASIGNACION\n");
         free($3);
     };
@@ -510,129 +576,6 @@ asignacion_operacion_aritmetica:
         free($3);
     };
 
-funcion_triangleAreaMaximum:
-    ID OP_AS_NEG_CALC TRIANGLEAREAMAXIMUM PA 
-    {
-       // insertar_en_polaca("TRIAMAX");
-        contTotalArgsTRIANGLE = 0;
-    } 
-    lista_params_triangle 
-    PC
-    {
-        insertar_en_polaca("f@end");
-        printf("Sintactico --> funcion triangleAreaMaximum\n");
-
-            // --- Aquí es el lugar correcto ---
-        float areaMax = evaluarTriangleAreaMaximum();
-        printf("AREA MAXIMA = %.2f\n", areaMax);
-        // Si querés, podés insertar el valor en la polaca o asignarlo a la variable:
-        char buffer[50];
-        insertar_en_polaca("TRIAMAX");
-        sprintf(buffer, "%.2f", areaMax);
-
-        insertar_en_polaca(buffer);  // opcional
-        insertar_en_polaca($1);
-        insertar_en_polaca("=");
-    }
-    ;
-
-/* Lista de dos triángulos separados por ';' */
-lista_params_triangle:
-    lista_vertice PYC lista_vertice
-    ;
-
-/* Un triángulo: corchetes con tres puntos */
-lista_vertice:
-    CA lista_puntos CC
-    {
-        insertar_en_polaca("VERTEXLIST");
-    }
-;
-
-/* Tres puntos dentro del triángulo, separados por ';' */
-lista_puntos:
-    punto PYC punto PYC punto
-;
-
-/* Un punto: par de expresiones */
-punto:
-      CTE_INTEGER COMA CTE_INTEGER
-      {
-          insertar_en_polaca($1);
-           insertNumber(&listaTS,$1);
-          insertar_en_polaca($3);
-            insertNumber(&listaTS,$3);
-          insertar_en_polaca("PUNTO");
-      }
-    | CTE_FLOAT COMA CTE_FLOAT
-      {
-          insertar_en_polaca($1);
-            insertNumber(&listaTS,$1);
-          insertar_en_polaca($3);
-            insertNumber(&listaTS,$3);
-          insertar_en_polaca("PUNTO");
-      }
-    | ID COMA ID
-      {
-       
-       char *valorX = getValueFromTS(&listaTS, $1);
-     char *valorY = getValueFromTS(&listaTS, $3);
-       
-
-        insertar_en_polaca(valorX);
-        insertar_en_polaca(valorY);
-
-        insertar_en_polaca("PUNTO");
-      }
-    | ID COMA CTE_INTEGER
-      {
-             char *valorY = getValueFromTS(&listaTS, $1);
-              insertar_en_polaca(valorY);
-        insertar_en_polaca($3);
-        insertNumber(&listaTS,$3);
-        insertar_en_polaca("PUNTO");
-      }
-    | ID COMA CTE_FLOAT
-      {
-        char *valorY = getValueFromTS(&listaTS, $1);
-        insertar_en_polaca(valorY);
-        insertar_en_polaca($3);
-        insertar_en_polaca("PUNTO");
-      }
-    | CTE_INTEGER COMA ID
-      {
-        char *valorY = getValueFromTS(&listaTS, $3);
-        insertar_en_polaca($1);
-        insertar_en_polaca(valorY);
-        insertNumber(&listaTS,$1);
-        insertar_en_polaca("PUNTO");
-      }
-    | CTE_FLOAT COMA ID
-      {
-         char *valorY = getValueFromTS(&listaTS, $3);
-          insertar_en_polaca($1);
-          insertar_en_polaca(valorY);
-          insertNumber(&listaTS,$1);
-          insertar_en_polaca("PUNTO");
-      }
-    | CTE_FLOAT COMA CTE_INTEGER
-      {
-         insertar_en_polaca($1);
-         insertar_en_polaca($3);
-         insertNumber(&listaTS,$1);
-         insertNumber(&listaTS,$3);
-        insertar_en_polaca("PUNTO");
-      }
-
-      | CTE_INTEGER COMA CTE_FLOAT  
-      {
-         insertar_en_polaca($1);
-          insertar_en_polaca($3);
-            insertNumber(&listaTS,$1);
-              insertNumber(&listaTS,$3);
-          insertar_en_polaca("PUNTO");
-      }
-    ;
 asignacion_negativeCalculation:
     ID OP_AS_NEG_CALC NEGATIVECALCULATION PA lista_params PC
     {
@@ -770,8 +713,6 @@ int main(int argc, char *argv[])
     createStack(&pilaVariables);
     createStack(&pilaTipoDatoVariable);
     yyparse();
-
-    
 
     // -------------------- Acciones despues de compilar
     crearTS(&listaTS);

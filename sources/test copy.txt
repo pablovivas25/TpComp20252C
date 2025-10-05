@@ -73,6 +73,14 @@ while (c < d)
 b1 := -1.5
 write(b1)
 
+#+ Entrada y salida +#
+#+ write("Ingrese un numero FLOAT: ")
+#+ read(numeroFloat) #+ base es una variable +#
+#+ write("-------------")
+#+ write("Numero ingresado:")  #+ "texto" es una cte string +#
+#+ write(numeroFloat)  #+ a es una variable definida previamente +#
+#+ write("-------------")  #+ "texto" es una cte string +#
+
 r := 3
 j := 2
 
@@ -85,6 +93,11 @@ x1 =: z / f
 x =: r * j - 2
 
 write(x)
+
+#+ TEMA ESPECIAL REORDER 1ER CUATRI 2025 +#
+
+reorder([x + 3, 1 + 1, 9 - x],true,2)  #+ la primer posicion es cero +#
+#+ [9-x, 1+1, x+3]  luego de reordenar +#
 
 
 #+ TEMA ESPECIAL NEGATIVECALCULATION 1ER CUATRI 2025 +#
@@ -111,14 +124,9 @@ areaMax = triangleAreaMaximum( [0, z; 4.0, 12; 2.5, 3] ; [z, 0; 6, 0; x, 2] )
 #+ Espero ver 11.85 +#
 write(areaMax)
 
-#+ z := 5.1 +#
-#+ x := 3  +#
+z := 5.1
+x := 3
 
-#+ areaMax = triangleAreaMaximum ( [0, z; 5.6, 7; 2.5, 3] ; [z, 0.5; 6, 1; x, 2] ) +#
+areaMax = triangleAreaMaximum ( [0, z; 5.6, 7; 2.5, 3] ; [z, 0.5; 6, 1; x, 2] )
 #+ Espero ver 8.26 +#
-#+ write(areaMax) +#
-
-
-#+ areaMax = triangleAreaMaximum ( [0, z; 5.6, 7; 2.5, 3] ; [z, 0.5; 6, 1; x, 2]; [0, z; 5.6, 7; 2.5, 3]) +#
-#+ Espero ver 8.26 +#
-#+ write(areaMax) +#
+write(areaMax)

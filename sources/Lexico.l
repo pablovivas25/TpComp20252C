@@ -33,7 +33,6 @@ ID			    {LETRA}({LETRA}|{DIGITO})*
 OP_AS   		":="
 OP_AS_OPE_ARIT  "=:"
 OP_AS_NEG_CALC  "="
-OP_AS_TRIANGLE_AREA_MAXIMUM  "="
 OP_SUM		    "+"
 OP_MUL          "*"
 OP_RES		    "-"
@@ -73,8 +72,6 @@ REORDER					"REORDER"|"reorder"
 NEGATIVECALCULATION		"NEGATIVECALCULATION"|"negativeCalculation"
 TRIANGLEAREAMAXIMUM     "TRIANGLEAREAMAXIMUM"|"triangleAreaMaximum"
 
-
-
 %%
 
 {INT}			    {printf("\nLexico --> Int: %s\n", yytext);return INT;}
@@ -84,7 +81,6 @@ TRIANGLEAREAMAXIMUM     "TRIANGLEAREAMAXIMUM"|"triangleAreaMaximum"
 {OP_AS}			    {printf("\nLexico --> Asignacion: %s\n", yytext);return OP_AS;}
 {OP_AS_OPE_ARIT}	{printf("\nLexico --> Asignacion operacion: %s\n", yytext);return OP_AS_OPE_ARIT;}
 {OP_AS_NEG_CALC}	{printf("\nLexico --> Asignacion negativeCalculation: %s\n", yytext);return OP_AS_NEG_CALC;}
-{OP_AS_TRIANGLE_AREA_MAXIMUM}	{printf("\nLexico --> Asignacion triangle area maximum: %s\n", yytext);return OP_AS_TRIANGLE_AREA_MAXIMUM;}
 {OP_MUL}		    {printf("\nLexico --> Multiplicacion: %s\n", yytext);return OP_MUL;}
 {OP_RES}		    {printf("\nLexico --> Resta: %s\n", yytext);return OP_RES;}
 {OP_DIV}		    {printf("\nLexico --> Division: %s\n", yytext);return OP_DIV;}
@@ -136,7 +132,7 @@ TRIANGLEAREAMAXIMUM     "TRIANGLEAREAMAXIMUM"|"triangleAreaMaximum"
 
 {REORDER}               {printf("\nLexico --> Reorder: %s\n", yytext);return REORDER;}
 {NEGATIVECALCULATION}   {printf("\nLexico --> NegativeCalculation: %s\n", yytext);return NEGATIVECALCULATION;}
-{TRIANGLEAREAMAXIMUM} {printf("\nLexico --> TriangleAreaMaximum: %s\n", yytext);return TRIANGLEAREAMAXIMUM ;}
+{TRIANGLEAREAMAXIMUM}   {printf("\nLexico --> triangleAreaMaximum: %s\n", yytext);return TRIANGLEAREAMAXIMUM;}
 
 {COMENTARIO_A}  {;}
 {COMENTARIO_I}  {;}
@@ -160,6 +156,4 @@ TRIANGLEAREAMAXIMUM     "TRIANGLEAREAMAXIMUM"|"triangleAreaMaximum"
 " "             		
 "\r\n"
 .			    { printf( "\nLexico -->ERROR LEXICO : Caracter no reconocido, linea de error: %s\n", yytext, yylineno ); exit (0);}
-
-
 %%

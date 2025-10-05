@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h> 
 
 
 #define PILA_LLENA  0
@@ -36,41 +35,10 @@ int desapilar_indice(int *);
 int ver_tope_de_pila(int *);
 int pila_vacia();
 int pila_llena();
-float calcularAreaTriangulo(float ,float ,float ,float ,float ,float );
-float evaluarTriangleAreaMaximum();
 
 /* ************************************************** */
 /* *********************** RPN ********************** */
 /* ************************************************** */
-
-float calcularAreaTriangulo(float x1,float y1,float x2,float y2,float x3,float y3){
-    return fabs(x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2)) / 2.0;
-}
-
-float evaluarTriangleAreaMaximum() {
-    float areaMax = 0.0;
-    int i = 0;
-
-    while(i < rpn->vector_index){
-        if(strcmp(rpn->vector_elements[i], "VERTEXLIST") == 0){
-            // Cada triángulo tiene 3 puntos, cada punto ocupa 3 elementos: x, y, "PUNTO"
-            int idx = i - 9; // 3 puntos * 3 elementos
-
-            float x[3], y[3];
-            int p;
-            for( p=0; p<3; p++){
-                x[p] = atof(rpn->vector_elements[idx + p*3]);
-                y[p] = atof(rpn->vector_elements[idx + p*3 + 1]);
-            }
-
-            float area = calcularAreaTriangulo(x[0],y[0], x[1],y[1], x[2],y[2]);
-            if(area > areaMax) areaMax = area;
-        }
-        i++;
-    }
-
-    return areaMax;
-}
 
 void init_polaca() {
     printf("Starting Reverse Polish Notation...\n");

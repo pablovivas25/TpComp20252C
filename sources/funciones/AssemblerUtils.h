@@ -11,11 +11,11 @@ typedef enum {
     TYPE_INT,
     TYPE_FLOAT,
     TYPE_STRING,
-    TYPE_UNKNOWN
+    TYPE_UNKNOWN,
+    TYPE_CTE_INT,    // constante int
+    TYPE_CTE_FLOAT,  // constante float
 } VariableType;
 
 int generar_assembler(tList *ptrTS, char **polaca, int rpn_size);
-VariableType getVariableType(const char* dataType);
-char* getTypeFromTS(tList ts, const char* name);
-void updateValueInTS(tList *p, const char* name, const char* newValue);
+
 #endif // ASSEMBLERUTILS_H_INCLUDED

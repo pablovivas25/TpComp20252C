@@ -4,41 +4,6 @@
 #include "lista.h"
 #include "funciones.h"
 
-/* contador y nuevoTemp que devuelve string alocado */
-int __tmp_count_triangle = 0;
-char *nuevoTemp() {
-    __tmp_count_triangle++;
-    char buf[64];
-    snprintf(buf, sizeof(buf), "ttri_%d", __tmp_count_triangle);
-    char *r = malloc(strlen(buf)+1);
-    strcpy(r, buf);
-    return r;
-}
-
-/* split "tx#ty" en a y b; a/b deben tener espacio suficiente */
-void splitTempPair(const char *pair, char *a, char *b) {
-    const char *sep = strchr(pair, '#');
-    if (!sep) {
-        /* fallback: si no hay '#', ponemos pair en a y b vacío */
-        strcpy(a, pair);
-        b[0] = '\0';
-        return;
-    }
-    int na = sep - pair;
-    strncpy(a, pair, na);
-    a[na] = '\0';
-    strcpy(b, sep+1);
-}
-
-float get_calc_area(float x1,float y1,float x2,float y2,float x3,float y3){
-  
-    float aux=x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2);
-
-    if(aux<-1)
-        aux*=-1;
-    
-    return 1/2*aux;
-}
 int insertNumber(tList *p, char *lex) 
 {
     int result = -1;
@@ -118,23 +83,23 @@ void crearTS(tList *p)
         return;
     }
 
-    printf("_______________________________________________________________________________\n");
-    printf("|%-25s|%-14s|%-25s|%-10s|\n", "NOMBRE", "TIPODATO", "VALOR", "LONGITUD");
-    printf("_______________________________________________________________________________\n");
+    printf("_____________________________________________________________________________________________________________\n");
+    printf("|%-40s|%-14s|%-40s|%-10s|\n", "NOMBRE", "TIPODATO", "VALOR", "LONGITUD");
+    printf("_____________________________________________________________________________________________________________\n");
 
-    fprintf(pTable, "_______________________________________________________________________________\n");
-    fprintf(pTable, "|%-25s|%-14s|%-25s|%-10s|\n", "NOMBRE", "TIPODATO", "VALOR", "LONGITUD");
-    fprintf(pTable, "_______________________________________________________________________________\n");
+    fprintf(pTable, "_____________________________________________________________________________________________________________\n");
+    fprintf(pTable, "|%-40s|%-14s|%-40s|%-10s|\n", "NOMBRE", "TIPODATO", "VALOR", "LONGITUD");
+    fprintf(pTable, "_____________________________________________________________________________________________________________\n");
 
     while(*p)
     {
-        printf("|%-25s|%-14s|%-25s|%-10d|\n", (*p)->name, (*p)->dataType, (*p)->value, (*p)->length);
-        fprintf(pTable, "|%-25s|%-14s|%-25s|%-10d|\n", (*p)->name, (*p)->dataType, (*p)->value, (*p)->length);
+        printf("|%-40s|%-14s|%-40s|%-10d|\n", (*p)->name, (*p)->dataType, (*p)->value, (*p)->length);
+        fprintf(pTable, "|%-40s|%-14s|%-40s|%-10d|\n", (*p)->name, (*p)->dataType, (*p)->value, (*p)->length);
         p = &(*p)->next;
     }
 
-    printf("_______________________________________________________________________________\n");
-    fprintf(pTable, "_______________________________________________________________________________\n");
+    printf("_____________________________________________________________________________________________________________\n");
+    fprintf(pTable, "_____________________________________________________________________________________________________________\n");
     fclose(pTable);
 }
 
@@ -194,6 +159,14 @@ char* get_type_in_ts(tList *p, const char* nombreVar) {
     char *tmpVarName = strdup(nombreVar);
     strcpy(nombreCTE, "_");
     strcat(nombreCTE, deleteCharacter(tmpVarName));
+
+    // Manejo especial para temporales internos
+    if (strncmp(tmpVarName, "@tmp", 4) == 0) {
+        return "FLOAT"; // o "INTEGER"
+    }
+    if (strncmp(tmpVarName, "_iszero_res_", 12) == 0) {
+        return "INTEGER"; // porque devolvemos 0/1
+    }
     // busco la variable para determinar el tipo. pregunto por nombreVar||_cte(str|float|integer)
     while (*p) {
         if (strcmp((*p)->name, tmpVarName) == 0 || strcmp((*p)->name, nombreCTE) == 0) { 
